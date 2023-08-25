@@ -50,6 +50,7 @@ def new_exercise(request):
         form = ExerciseForm(request.POST)
         if form.is_valid():
             form.save()
+            return HttpResponseRedirect(reverse('exercises'))
     
     return render(request, 'practice/new_exercise.html', {
         'form': ExerciseForm()

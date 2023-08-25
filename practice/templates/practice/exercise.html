@@ -4,7 +4,7 @@
     <h1>{{ exercise.name }}</h1>
     <h2>{{ exercise.type }}</h2>
     {% if exercise.video_link %}
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/6s32hmkdrDw?si=u6D__TRgz8o5cQ8p" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="{{ exercise.video_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     {% endif %}
     <p>{{ exercise.description }}</p>
     <a href="{% url 'record' exercise.id %}"><button>Record</button></a>
