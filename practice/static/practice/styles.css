@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#new-exercise-form {
+    max-width: 800px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#new-exercise-form > *{
+    display: block;
+    width: 100%;
+}
+
+#new-exercise-form > label {
+    margin-top: 10px;
+}
+
+#navbar {
+    display: flex;
+}
+
+#navbar > ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 20px;
+}
+
+.no-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.no-link:hover {
+    text-decoration: underline;
+}

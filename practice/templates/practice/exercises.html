@@ -1,0 +1,11 @@
+{% extends 'practice/layout.html' %}
+
+{% block body %}
+    {% for exercise in exercises %}
+        <h1>{{ exercise.name }}</h1>
+        <h3>{{ exercise.type }}</h3>
+        <p>{{ exercise.description }}</p>
+        <a href="{% url 'exercise' exercise.id %}"><button>View</button></a>
+        <a href="{% url 'record' exercise.id %}"><button>Record exercise</button></a>
+    {% endfor %}
+{% endblock %}

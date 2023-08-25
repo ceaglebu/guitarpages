@@ -1,0 +1,14 @@
+{% extends 'practice/layout.html' %}
+
+{% block body %}
+    <h1>Record {{ exercise.name }}</h1>
+    <form action="{% url 'record' exercise.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        {% if exercise.quality_measurement.name == 'BPM' %}
+            
+        {% endif %}
+        <input type="submit">
+    </form>
+{% endblock %}

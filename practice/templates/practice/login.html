@@ -1,0 +1,16 @@
+{% extends 'practice/layout.html' %}
+
+{% block body %}
+    <h1>Log In</h1>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <input autofocus type="text" placeholder="Username" name="username">
+        <input type="password" placeholder="Password" name="password">
+        <input type="submit">
+    </form>
+{% endblock %}
