@@ -60,7 +60,7 @@ def exercise(request, id):
     if exercise:
         return render(request, 'practice/exercise.html', {
             'exercise': exercise,
-            'records': Record.objects.filter(Q(exercise=exercise) & Q(user=request.user.id))
+            'records': Record.objects.filter(Q(exercise=exercise) & Q(user=request.user.id)).order_by('-time')
         })
 
 def exercises(request):
@@ -84,8 +84,10 @@ def record(request, id):
             record = RecordForm(request.POST)
             if record.is_valid():
                 record.instance.exercise = exercise
-                record.instance.user = User.objects.get(id=request.user.id)
+                record.instance.user = request.user
                 record.save()
+
+                return HttpResponseRedirect(reverse('exercise', kwargs={'id': id}))
 
         return render(request, 'practice/record.html', {
             'exercise': exercise,

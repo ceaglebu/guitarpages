@@ -3,13 +3,21 @@ body {
     padding: 0;
 }
 
-#new-exercise-form {
+#header {
+    border-bottom: 2px solid black;
+}
+
+#body {
     max-width: 800px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#new-exercise-form {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 10px;
-    padding-right: 10px;
 }
 
 #new-exercise-form > *{
@@ -19,6 +27,13 @@ body {
 
 #new-exercise-form > label {
     margin-top: 10px;
+}
+
+#new-exercise-create {
+    width: 150px;
+    height: 50px;
+    margin-top: 20px;
+    margin-left: auto;
 }
 
 #navbar {
@@ -39,4 +54,18 @@ body {
 
 .no-link:hover {
     text-decoration: underline;
+}
+
+.record-table {
+    width: 100%;
+}
+
+.record-table tr  {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: start;
+}
+
+.record-table thead tr {
+    border-bottom: solid 2px black;
 }

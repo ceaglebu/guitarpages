@@ -9,7 +9,7 @@
     <title>Guitar Pages</title>
 </head>
 <body>
-    <header>
+    <header id="header">
         <nav id="navbar">
             <ul>
                 <h3><a class="no-link" href="{% url 'index' %}">GuitarPages</a></h3>
@@ -35,8 +35,10 @@
         </nav>
     </header>
     <main>
-        {% block body %}
-        {% endblock %}
+        <div id="body">
+            {% block body %}
+            {% endblock %}
+        </div>
     </main>
 </body>
 </html>

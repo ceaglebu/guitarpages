@@ -3,12 +3,15 @@
 {% block body %}
     <h1>{{ exercise.name }}</h1>
     <h2>{{ exercise.type }}</h2>
+    {% if exercise.video_link %}
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/6s32hmkdrDw?si=u6D__TRgz8o5cQ8p" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    {% endif %}
     <p>{{ exercise.description }}</p>
     <a href="{% url 'record' exercise.id %}"><button>Record</button></a>
-    <table>
+    <table class="record-table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Date</th>
                 <th>Note</th>
                 <th>Length</th>
                 <th>Rating</th>
@@ -17,10 +20,10 @@
         <tbody>
             {% for record in records %}
                 <tr>
-                    <td>{{ record.id }}</td>
+                    <td>{{ record.time }}</td>
                     <td>{{ record.note }}</td>
                     <td>{{ record.length }} minutes</td>
-                    <td>{{ record.quality_rating }}</td>
+                    <td>{{ record.quality_rating }} {{ record.exercise.quality_measurement }}</td>
                 </tr>
             {% endfor %}
         </tbody>
