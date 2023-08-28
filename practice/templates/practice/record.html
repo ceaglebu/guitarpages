@@ -2,13 +2,16 @@
 
 {% block body %}
     <h1>Record {{ exercise.name }}</h1>
-    <form action="{% url 'record' exercise.id %}" method="post">
+    <form id="record-form" action="{% url 'record' exercise.id %}" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+
+        <label for="id_note">Note:</label>
+        {{ form.note }}
+        <label for="id_quality_rating">{{ exercise.quality_measurement }}{% if exercise.quality_measurement.name == 'Quality' %} (1-5){% endif %}:</label>
+        {{ form.quality_rating }}
+        <label for="id_length">Length:</label>
+        {{ form.length }}
         
-        {% if exercise.quality_measurement.name == 'BPM' %}
-            
-        {% endif %}
-        <input type="submit">
+        <input id='record-submit' type="submit">
     </form>
 {% endblock %}

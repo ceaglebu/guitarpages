@@ -1,9 +1,9 @@
 {% extends 'practice/layout.html' %}
 
 {% block body %}
-    <form id="new-exercise-form" action="{% url 'new_exercise' %}" method="post">
+    <form id="new-exercise-form" action="{% if action == 'Create' %}{% url 'new_exercise' %}{% else %}{% url 'edit_exercise' form.instance.id %}{% endif %}" method="post">
         {% csrf_token %}
         {{ form }}
-        <input id="new-exercise-create" type="submit" value="Create">
+        <input id="new-exercise-create" type="submit" value="{{ action }}">
     </form>
 {% endblock %}

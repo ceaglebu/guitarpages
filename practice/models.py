@@ -37,7 +37,7 @@ class Exercise(models.Model):
     skills = models.ManyToManyField(Skill, blank=True, related_name='exercises')
     video_link = models.CharField(max_length=64, blank=True, null=True)
     creator = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='exercises')
-    privacy = models.CharField(max_length=2, choices=Privacy.choices, default=Privacy.PRIV)
+    privacy = models.CharField(max_length=2, choices=Privacy.choices, default="PV")
 
     def __str__(self):
         return self.name

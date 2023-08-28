@@ -1,6 +1,8 @@
 {% extends 'practice/layout.html' %}
 
 {% block body %}
-    <a href="{% url 'new_exercise' %}"><button>Create New Exercise</button></a>
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'new_exercise' %}"><button>Create New Exercise</button></a>
+    {% endif %}
     <a href="{% url 'exercises' %}"><button>View Exercises</button></a>
 {% endblock %}

@@ -14,24 +14,18 @@ body {
     margin-right: auto;
 }
 
-#new-exercise-form {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#new-exercise-form > *{
+#new-exercise-form > *, #record-form > * {
     display: block;
     width: 100%;
 }
 
-#new-exercise-form > label {
+#new-exercise-form > label, #record-form > label {
     margin-top: 10px;
 }
 
-#new-exercise-create {
+#new-exercise-create, #record-submit {
     width: 150px;
-    height: 50px;
+    height: 40px;
     margin-top: 20px;
     margin-left: auto;
 }
@@ -45,6 +39,7 @@ body {
     list-style: none;
     align-items: center;
     gap: 20px;
+    padding-inline-start: 14px;
 }
 
 .no-link {
@@ -62,10 +57,32 @@ body {
 
 .record-table tr  {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 25%);
     justify-items: start;
+    border-bottom: 1px solid lightgrey;
+}
+
+.record-table td {
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.record-table tr:hover td {
+    white-space: normal;
+    overflow: visible;
 }
 
 .record-table thead tr {
     border-bottom: solid 2px black;
+}
+
+#record-video {
+    width: 100%;
+    aspect-ratio: 16/9;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }

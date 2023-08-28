@@ -7,5 +7,8 @@
         <p>{{ exercise.description }}</p>
         <a href="{% url 'exercise' exercise.id %}"><button>View</button></a>
         <a href="{% url 'record' exercise.id %}"><button>Record</button></a>
+        {% if exercise.creator == request.user %}
+            <a href="{% url 'edit_exercise' exercise.id %}"><button>Edit</button></a>
+        {% endif %}
     {% endfor %}
 {% endblock %}

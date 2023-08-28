@@ -3,29 +3,40 @@
 {% block body %}
     <h1>{{ exercise.name }}</h1>
     <h2>{{ exercise.type }}</h2>
+    <p>Posted by: <a class="no-link" href="{% url 'user' exercise.creator.id %}">{{ exercise.creator }}</a></p>
     {% if exercise.video_link %}
-        <iframe width="560" height="315" src="{{ exercise.video_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe id='record-video' width="560" height="315" src="{{ exercise.video_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     {% endif %}
     <p>{{ exercise.description }}</p>
     <a href="{% url 'record' exercise.id %}"><button>Record</button></a>
-    <table class="record-table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Note</th>
-                <th>Length</th>
-                <th>Rating</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for record in records %}
+    {% if request.user == exercise.creator %}
+        <a href="{% url 'edit_exercise' exercise.id %}"><button>Edit</button></a>
+    {% endif %}
+
+    {% if request.user.is_authenticated %}
+        <h1>Exercise History</h1>
+        <table class="record-table">
+            <thead>
                 <tr>
-                    <td>{{ record.time }}</td>
-                    <td>{{ record.note }}</td>
-                    <td>{{ record.length }} minutes</td>
-                    <td>{{ record.quality_rating }} {{ record.exercise.quality_measurement }}</td>
+                    <th>Date</th>
+                    <th>Note</th>
+                    <th>Length</th>
+                    <th>{{ exercise.quality_measurement }}</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                    <tr>
+                        <td>{{ record.time|date:"m/d/y" }}</td>
+                        <td>{{ record.note }}</td>
+                        <td>{{ record.length }} minutes</td>
+                        <td>{{ record.quality_rating }} {{ exercise.quality_measurement }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if records|length == 0 %}
+            <p><b>You have not recorded this exercise.</b></p>
+        {% endif %}
+    {% endif %}
 {% endblock %}
