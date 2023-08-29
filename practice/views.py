@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django import forms
 from django.urls import reverse
-from django.db.models import Q
+from django.db.models import Q, Value, F, Func, CharField
 from django.db import IntegrityError
 
 from django.contrib.auth import authenticate, login, logout
@@ -14,6 +14,10 @@ from .models import Exercise, Record
 # Create your views here.
 def index(request):
     return render(request, 'practice/index.html')
+
+#######################
+# USER AUTHENTICATION #
+#######################
 
 def login_view(request):
 
@@ -64,13 +68,17 @@ def register(request):
 def user(request, id):
     return HttpResponse(User.objects.get(id=id))
 
+#############
+# EXERCISES #
+#############
+
 class ExerciseForm(forms.ModelForm):
 
     description = forms.CharField(widget=forms.Textarea(attrs={"placeholder": "Describe the exercise..."}), required=False)
 
     class Meta:
         model = Exercise
-        fields = ['id', 'name', 'type', 'quality_measurement', 'description', 'skills', 'video_link', 'privacy']
+        fields = ['name', 'type', 'quality_measurement', 'description', 'skills', 'video_link', 'privacy']
 
 @login_required
 def new_exercise(request):
@@ -113,6 +121,7 @@ def exercise_view(request, id):
 
     if request.user.is_authenticated:
         records = exercise.records.filter(user=request.user.id).order_by('-time')
+
     else:
         records = None
 
@@ -131,6 +140,10 @@ def exercises(request):
     return render(request, 'practice/exercises.html', {
         'exercises': exercises
     })
+
+###################
+# RECORD EXERCISE #
+###################
 
 class RecordForm(forms.ModelForm):
 
@@ -157,3 +170,9 @@ def record(request, id):
             'exercise': exercise,
             'form': RecordForm()
         })
+    
+
+#####################
+# PRACTICE ROUTINES #
+#####################
+
