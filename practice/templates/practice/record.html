@@ -9,7 +9,7 @@
         {{ form.note }}
         <label for="id_quality_rating">{{ exercise.quality_measurement }}{% if exercise.quality_measurement.name == 'Quality' %} (1-5){% endif %}:</label>
         {{ form.quality_rating }}
-        <label for="id_length">Length:</label>
+        <label for="id_length">Length (mins):</label>
         {{ form.length }}
         
         <input id='record-submit' type="submit">

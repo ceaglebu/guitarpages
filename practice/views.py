@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
-from .models import Exercise, Record
+from .models import Exercise, Record, RoutineExercise, Routine
 
 # Create your views here.
 def index(request):
@@ -176,3 +176,17 @@ def record(request, id):
 # PRACTICE ROUTINES #
 #####################
 
+def new_routine(request):
+
+    # New routine template will have title description, skills, privacy
+
+    # After this, "Add exercise" button will use Javascript and "add_exercise" template to add a new exercise
+
+    # Clicking submit on this form will append RoutineExercise information to a list and use the use the "added_exercise"
+    # to add it to the routine's list of exercise
+
+    # You should be able to remove any of these exercises.
+
+    # The final submit button should POST request a new routine to this view, then POST each individual RoutineExercise
+
+    return render(request, 'templates/new_routine.html')
