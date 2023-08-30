@@ -121,11 +121,10 @@ def exercise_view(request, id):
 
     if request.user.is_authenticated:
         records = exercise.records.filter(user=request.user.id).order_by('-time')
-
     else:
         records = None
 
-    if exercise and exercise.creator == request.user or exercise.privacy == "PB" or exercise.privacy == "UL":
+    if exercise and (request.user.is_authenticated and exercise.creator == request.user) or exercise.privacy == "PB" or exercise.privacy == "UL":
         return render(request, 'practice/exercise.html', {
             'exercise': exercise,
             'records': records
