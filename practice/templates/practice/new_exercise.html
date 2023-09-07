@@ -1,6 +1,7 @@
 {% extends 'practice/layout.html' %}
 
 {% block body %}
+    <h1 class="form-heading">{{ action }} Exercise</h1>
     <form id="new-exercise-form" action="{% if action == 'Create' %}{% url 'new_exercise' %}{% else %}{% url 'edit_exercise' form.instance.id %}{% endif %}" method="post">
         {% csrf_token %}
         {{ form }}

@@ -14,16 +14,20 @@ body {
     margin-right: auto;
 }
 
-#new-exercise-form > *, #record-form > * {
+.form-heading {
+    margin-bottom: 0;
+}
+
+#new-exercise-form > *, #record-form > *, #new-routine-form > * {
     display: block;
     width: 100%;
 }
 
-#new-exercise-form > label, #record-form > label {
+#new-exercise-form > label, #record-form > label, #new-routine-form > label {
     margin-top: 10px;
 }
 
-#new-exercise-create, #record-submit {
+#new-exercise-create, #record-submit, #new-routine-create {
     width: 150px;
     height: 40px;
     margin-top: 20px;

@@ -1,0 +1,22 @@
+{% extends "practice/layout.html" %}
+
+{% load static %}
+
+{% block header %}
+    <script src="{% static 'practice/new-routine.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <h1 class="form-heading">Create Routine</h1>
+    <div id="new-routine-form">
+        {% csrf_token %}
+        {{ form }}
+        <button id="add-new-exercise">Add New Exercise</button>
+        <button id="add-existing-exercise">Add Existing Exercise</button>
+        <div id="add-exercise-div">
+        </div>
+        <input id="new-routine-create" type="submit">
+    </div>
+
+{% endblock %}

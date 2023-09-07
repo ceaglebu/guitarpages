@@ -175,9 +175,17 @@ def record(request, id):
 # PRACTICE ROUTINES #
 #####################
 
+class RoutineForm(forms.ModelForm):
+
+    description = forms.CharField(widget=forms.Textarea(attrs={"placeholder": "Describe the routine..."}), required=False)
+
+    class Meta:
+        model = Exercise
+        fields = ['name', 'description', 'skills', 'privacy']
+
 def new_routine(request):
 
-    # New routine template will have title description, skills, privacy
+    # New routine template will have title, description, skills, privacy
 
     # After this, "Add exercise" button will use Javascript and "add_exercise" template to add a new exercise
 
@@ -188,4 +196,6 @@ def new_routine(request):
 
     # The final submit button should POST request a new routine to this view, then POST each individual RoutineExercise
 
-    return render(request, 'templates/new_routine.html')
+    return render(request, 'practice/new_routine.html', {
+        "form": RoutineForm()
+    })
