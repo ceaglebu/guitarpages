@@ -15,5 +15,7 @@ urlpatterns = [
     path('exercise/new', views.new_exercise, name='new_exercise'),
     path('exercise/edit/<int:id>', views.edit_exercise, name='edit_exercise'),
     path('exercise/<int:id>', views.exercise_view, name='exercise'),
-    path('components/add_exercise', components.add_exercise, name='component_add_exercise')
+
+    path('components/add_exercise', components.add_exercise, name='component_add_exercise'),
+    path('components/new_exercise', components.new_exercise_form, name='component_new_exercise')
 ]

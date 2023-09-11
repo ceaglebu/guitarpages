@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
 from .models import Exercise, Record, RoutineExercise, Routine
+from .forms import ExerciseForm, RecordForm, RoutineForm
 
 # Create your views here.
 def index(request):
@@ -71,14 +72,6 @@ def user(request, id):
 #############
 # EXERCISES #
 #############
-
-class ExerciseForm(forms.ModelForm):
-
-    description = forms.CharField(widget=forms.Textarea(attrs={"placeholder": "Describe the exercise..."}), required=False)
-
-    class Meta:
-        model = Exercise
-        fields = ['name', 'type', 'quality_measurement', 'description', 'skills', 'video_link', 'privacy']
 
 @login_required
 def new_exercise(request):
@@ -144,14 +137,6 @@ def exercises(request):
 # RECORD EXERCISE #
 ###################
 
-class RecordForm(forms.ModelForm):
-
-    note = forms.CharField(widget=forms.Textarea(attrs={'rows': '4'}), required=False)
-
-    class Meta:
-        model = Record
-        fields = ['note', 'quality_rating', 'length']
-
 def record(request, id):
     exercise = Exercise.objects.filter(id=id).first()
     if exercise:
@@ -175,14 +160,6 @@ def record(request, id):
 # PRACTICE ROUTINES #
 #####################
 
-class RoutineForm(forms.ModelForm):
-
-    description = forms.CharField(widget=forms.Textarea(attrs={"placeholder": "Describe the routine..."}), required=False)
-
-    class Meta:
-        model = Exercise
-        fields = ['name', 'description', 'skills', 'privacy']
-
 def new_routine(request):
 
     # New routine template will have title, description, skills, privacy
@@ -197,5 +174,5 @@ def new_routine(request):
     # The final submit button should POST request a new routine to this view, then POST each individual RoutineExercise
 
     return render(request, 'practice/new_routine.html', {
-        "form": RoutineForm()
+        "form": RoutineForm(auto_id="routine_%s")
     })

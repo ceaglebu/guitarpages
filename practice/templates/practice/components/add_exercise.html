@@ -1,8 +1,15 @@
-<label for="exercise">Exercise:</label>
-<input id="exercise" list="exercises">
+<h3>Add Existing Exercise</h3>
+<p>
+    <label for="exercise">Exercise:</label>
+    <input id="exercise" name="exercise" list="exercises">
+</p>
+<p>
+    <label for="length">Length (mins): </label>
+    <input id="length" name="length" type="number">
+</p>
 <datalist id="exercises">
     {% for exercise in exercises %}
-        <option data-id="{{ exercise.id }}" value="{{ exercise.name }}">{{ exercise.creator }}</option>
+        <option data-id="{{ exercise.id }}" value="{{ exercise.id }}">{{ exercise.name }} - {{ exercise.creator }}</option>
     {% endfor %}
 </datalist>
 <button id="add-exercise-btn">Add</button>
